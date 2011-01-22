@@ -35,6 +35,16 @@ if node[:instance_role] == "solo" || (node[:instance_role] == "util" && node[:na
     end
     
     execute "monit-reload-restart" do
+		#TODO HERE
+		#find the hash of (buggy) engineyard/bin/dj and store in var here in code
+		#find current hash of the file
+		#if same, then do the following changes
+		#change dj file with my changes and overwrite the original EY's file
+		#create the runner file
+		#do chmod 755:
+		command "chmod 755 /data/#{app_name}/current/script/rails"
+		command "chmod 755 /data/#{app_name}/current/script/runner"
+		command "chmod 755 /data/#{app_name}/current/script/delayed_job"		
        command "sleep 30 && monit reload"
        action :run
     end
